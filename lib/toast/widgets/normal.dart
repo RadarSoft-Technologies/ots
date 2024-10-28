@@ -12,16 +12,15 @@ class DefaultToast extends StatefulWidget {
   final VoidCallback? onToasted;
 
   const DefaultToast(
-      {Key? key,
+      {super.key,
       this.backgroundColor = ToastColors.defaultToastBGColor,
       this.textStyle = ToastTextStyle.defaultTextStyle,
       this.message = " ",
       this.duration = ToastLength.short,
-      this.onToasted})
-      : super(key: key);
+      this.onToasted});
 
   @override
-  _DefaultToastState createState() => _DefaultToastState();
+  State<DefaultToast> createState() => _DefaultToastState();
 }
 
 class _DefaultToastState extends State<DefaultToast>

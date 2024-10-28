@@ -8,7 +8,7 @@ void main() {
     'hideLoader does not throw when no overlay is shown',
     (tester) async {
       await tester.pumpWidget(
-        OTS(
+        const OTS(
           child: MaterialApp(
             home: Scaffold(),
           ),
@@ -28,7 +28,7 @@ void main() {
     'hideNotification does not throw when no overlay is shown',
     (tester) async {
       await tester.pumpWidget(
-        OTS(
+        const OTS(
           child: MaterialApp(
             home: Scaffold(),
           ),

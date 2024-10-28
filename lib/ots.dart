@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, void_checks, constant_identifier_names, library_private_types_in_public_api
+
 library ots;
 
 import 'dart:io' show InternetAddress, Platform, SocketException;
@@ -56,7 +58,7 @@ class OTS extends StatelessWidget {
   final double bottomInternetNotificationPadding;
 
   const OTS({
-    Key? key,
+    super.key,
     this.child,
     this.loader,
     this.showNetworkUpdates = false,
@@ -65,7 +67,7 @@ class OTS extends StatelessWidget {
     this.connectivityCheckAddress,
     this.networkStateMessenger,
     this.bottomInternetNotificationPadding = 0.0
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -174,11 +176,11 @@ Future<void> _showNetworkStateWidget(NetworkState state, NetworkStateMessenger? 
       child: NetworkWidget(
         disposeOverlay: _hideNetworkStateWidget,
         state: state,
-        messenger: messenger ?? NetworkStateDefaultMessage(),
+        messenger: messenger ?? const NetworkStateDefaultMessage(),
         persistNotification: _persistNoInternetToast,
       ),
     );
-    _printLog("Network change: " + (messenger ?? NetworkStateDefaultMessage()).message(state));
+    // _printLog("Network change: " + (messenger ?? NetworkStateDefaultMessage()).message(state));
     if (_OverlayType.NetworkStatus.isShowing()) {
       _printLog("An internet overlay is being currently shown, "
           "hiding it before showing new overlay");
@@ -189,7 +191,7 @@ Future<void> _showNetworkStateWidget(NetworkState state, NetworkStateMessenger? 
   } catch (err) {
     _printError(
         '''Caught an exception while trying to show NetworkStatusWidget''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -200,7 +202,7 @@ Future<void> _hideNetworkStateWidget() async {
   } catch (err) {
     _printError(
         '''Caught an exception while trying to hide NetworkStatusWidget''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -214,8 +216,8 @@ Future<void> showLoader(
     final _child = Center(
       child: _loadingIndicator ??
           (Platform.isAndroid
-              ? CircularProgressIndicator()
-              : CupertinoActivityIndicator()),
+              ? const CircularProgressIndicator()
+              : const CupertinoActivityIndicator()),
     );
     await _showOverlay(
       child: isModal
@@ -234,7 +236,7 @@ Future<void> showLoader(
   } catch (err) {
     debugPrint(
         '''Caught an exception while trying to show a Loader\n${err.toString()}''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -244,7 +246,7 @@ Future<void> hideLoader() async {
     await _hideOverlay(_OverlayType.Loader);
   } catch (err) {
     _printError('''Caught an exception while trying to hide loader''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -286,7 +288,7 @@ Future<NotificationWidgetState> showNotification(
     return instance.get();
   } catch (err) {
     _printError('''Caught an exception while trying to show Notification''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -296,7 +298,7 @@ Future<void> hideNotification() async {
     await _hideOverlay(_OverlayType.Notification);
   } catch (err) {
     _printError('''Caught an exception while trying to hide Notification''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -359,7 +361,7 @@ Future<void> bakeToast(String message,
     await _showOverlay(child: child, type: _OverlayType.Toast);
   } catch (err) {
     _printError('''Caught an exception while trying to show Toast''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -369,7 +371,7 @@ Future<void> _hideToast() async {
     await _hideOverlay(_OverlayType.Toast);
   } catch (err) {
     _printError('''Caught an exception while trying to hide Toast''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -402,7 +404,7 @@ Future<void> _showOverlay({required Widget child, _OverlayType? type}) async {
   } catch (err) {
     _printError(
         '''Caught an exception while trying to insert Overlay\n${err.toString()}''');
-    throw err;
+    rethrow;
   }
 }
 
@@ -417,7 +419,7 @@ Future<void> _hideOverlay(_OverlayType type) async {
   } catch (err) {
     _printError(
         '''Caught an exception while trying to remove Overlay\n${err.toString()}''');
-    throw err;
+    rethrow;
   }
 }
 

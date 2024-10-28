@@ -12,16 +12,15 @@ class SuccessToast extends StatefulWidget {
   final VoidCallback? onToasted;
 
   const SuccessToast(
-      {Key? key,
+      {super.key,
       this.backgroundColor = ToastColors.successToastBGColor,
       this.textStyle = ToastTextStyle.defaultTextStyle,
       this.message = " ",
       this.duration = ToastLength.short,
-      this.onToasted})
-      : super(key: key);
+      this.onToasted});
 
   @override
-  _SuccessToastState createState() => _SuccessToastState();
+  State<SuccessToast> createState() => _SuccessToastState();
 }
 
 class _SuccessToastState extends State<SuccessToast>
@@ -69,11 +68,11 @@ class _SuccessToastState extends State<SuccessToast>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.check_circle,
                 color: Colors.white,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               Flexible(
                 child: Text(
                   widget.message,

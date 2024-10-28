@@ -27,7 +27,7 @@ class AnimatedAboutDialog extends StatefulWidget {
   });
 
   @override
-  _AnimatedAboutDialogState createState() => _AnimatedAboutDialogState();
+  State<AnimatedAboutDialog> createState() => _AnimatedAboutDialogState();
 }
 
 class _AnimatedAboutDialogState extends State<AnimatedAboutDialog>

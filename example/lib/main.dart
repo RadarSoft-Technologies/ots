@@ -4,13 +4,15 @@ import 'package:ots/ots.dart';
 import 'package:ots/widgets/notification.dart';
 
 void main() => runApp(
-      MyApp(),
+      const MyApp(),
     );
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return OTS(
+    return const OTS(
       showNetworkUpdates: true,
       persistNoInternetNotification: false,
       bottomInternetNotificationPadding: 16.0,
@@ -30,12 +32,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final textStyle = TextStyle(color: Colors.white);
-final headerStyle = TextStyle(color: Colors.black, fontSize: 18.0);
+const textStyle = TextStyle(color: Colors.white);
+const headerStyle = TextStyle(color: Colors.black, fontSize: 18.0);
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -48,13 +52,12 @@ class _HomeState extends State<Home> {
       runSpacing: 8.0,
       spacing: 8.0,
       children: [
-        Row(
+        const Row(
           children: [
             Expanded(child: Text("Notifications demo", style: headerStyle,)),
           ],
         ),
         ElevatedButton(
-          child: Text('Success', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.green)
           ),
@@ -67,9 +70,9 @@ class _HomeState extends State<Home> {
               notificationDuration: 2500,
             );
           },
+          child: const Text('Success', style: textStyle),
         ),
         ElevatedButton(
-          child: Text('Error', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.red)
           ),
@@ -82,9 +85,9 @@ class _HomeState extends State<Home> {
               notificationDuration: 2500,
             );
           },
+          child: const Text('Error', style: textStyle),
         ),
         ElevatedButton(
-          child: Text('Warning', style: textStyle),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(Colors.orange)
           ),
@@ -97,9 +100,9 @@ class _HomeState extends State<Home> {
               notificationDuration: 2500,
             );
           },
+          child: const Text('Warning', style: textStyle),
         ),
         ElevatedButton(
-          child: Text('Info', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.blue)
           ),
@@ -112,9 +115,10 @@ class _HomeState extends State<Home> {
               notificationDuration: 2500,
             );
           },
+          child: const Text('Info', style: textStyle),
         ),
         ElevatedButton(
-          child: Text('Custom handler', style: textStyle),
+          child: const Text('Custom handler', style: textStyle),
           onPressed: () async {
             instance = await showNotification(
               message: 'Hello, this will persist until you call close function',
@@ -122,8 +126,8 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.blue,
               autoDismissible: false,
             );
-            await Future.delayed(Duration(seconds: 3));
-            print("Closing notification now");
+            await Future.delayed(const Duration(seconds: 3));
+            // print("Closing notification now");
             instance?.close();
           },
         ),
@@ -137,26 +141,26 @@ class _HomeState extends State<Home> {
       runSpacing: 8.0,
       spacing: 8.0,
       children: [
-        Row(
+        const Row(
           children: [
             Expanded(child: Text("Loader", style: headerStyle,)),
           ],
         ),
 
         ElevatedButton(
-          child: Text('Show Loader', style: textStyle),
+          child: const Text('Show Loader', style: textStyle),
           onPressed: () async {
             showLoader(
               isModal: true,
             );
 
-            await Future.delayed(Duration(seconds: 3));
+            await Future.delayed(const Duration(seconds: 3));
             hideLoader();
           },
         ),
 
         ElevatedButton(
-          child: Text('Show modal Loader', style: textStyle),
+          child: const Text('Show modal Loader', style: textStyle),
           onPressed: () async {
             showLoader(
                 isModal: true,
@@ -164,7 +168,7 @@ class _HomeState extends State<Home> {
                 modalDismissible: false
             );
 
-            await Future.delayed(Duration(seconds: 3));
+            await Future.delayed(const Duration(seconds: 3));
             hideLoader();
           },
         ),
@@ -179,60 +183,60 @@ class _HomeState extends State<Home> {
       runSpacing: 8.0,
       spacing: 8.0,
       children: [
-        Row(
+        const Row(
           children: [
             Expanded(child: Text("Toast", style: headerStyle)),
           ],
         ),
 
         ElevatedButton(
-          child: Text('Info', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.blue)
           ),
           onPressed: () async {
             bakeToast("This is informational!", type: ToastType.info);
           },
+          child: const Text('Info', style: textStyle),
         ),
 
         ElevatedButton(
-          child: Text('Normal', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.lightBlue)
           ),
           onPressed: () async {
             bakeToast("Downloading, please wait!", type: ToastType.normal);
           },
+          child: const Text('Normal', style: textStyle),
         ),
 
         ElevatedButton(
-          child: Text('Error', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.red)
           ),
           onPressed: () async {
             bakeToast("Password is incorrect!", type: ToastType.error);
           },
+          child: const Text('Error', style: textStyle),
         ),
 
         ElevatedButton(
-          child: Text('Warning', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.orange)
           ),
           onPressed: () async {
             bakeToast("Password is weak!", type: ToastType.warning);
           },
+          child: const Text('Warning', style: textStyle),
         ),
 
         ElevatedButton(
-          child: Text('Success', style: textStyle),
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.green)
           ),
           onPressed: () async {
             bakeToast("Registration successful!", type: ToastType.success);
           },
+          child: const Text('Success', style: textStyle),
         ),
 
       ],
@@ -251,9 +255,9 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               notifications(),
-              Divider(height: 32.0),
+              const Divider(height: 32.0),
               loader(),
-              Divider(height: 32.0),
+              const Divider(height: 32.0),
               toast(),
             ],
           ),

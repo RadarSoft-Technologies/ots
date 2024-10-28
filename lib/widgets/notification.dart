@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:ots/utils/styles.dart';
 
@@ -15,7 +17,7 @@ class NotificationWidget extends StatefulWidget {
   final Color? backgroundColor;
 
   const NotificationWidget(
-      {Key? key,
+      {super.key,
       this.duration = 2000,
       this.autoDismissible = true,
       this.disposeOverlay,
@@ -24,13 +26,10 @@ class NotificationWidget extends StatefulWidget {
       this.titleStyle,
       this.backgroundColor = Colors.black,
       this.title = "Notification",
-      this.animDuration = 400})
-      : super(key: key);
+      this.animDuration = 400});
 
   NotificationWidgetState get() {
-    if (_instance == null) {
-      _instance = NotificationWidgetState();
-    }
+    _instance ??= NotificationWidgetState();
     return _instance!;
   }
 
@@ -55,7 +54,7 @@ class NotificationWidgetState extends State<NotificationWidget>
       }
     } catch (err) {
       debugPrint('''NotificationWidget dispose error''');
-      throw err;
+      rethrow;
     }
   }
 
@@ -86,7 +85,7 @@ class NotificationWidgetState extends State<NotificationWidget>
         }
       } catch (err) {
         debugPrint('''NotificationWidget dispose error''');
-        throw err;
+        rethrow;
       }
     }
   }
@@ -106,7 +105,7 @@ class NotificationWidgetState extends State<NotificationWidget>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Dismissible(
-      key: Key('dismissible_child_notification_overlay'),
+      key: const Key('dismissible_child_notification_overlay'),
       onDismissed: (DismissDirection direction) => _callDispose(),
       direction: DismissDirection.horizontal,
       confirmDismiss: (d) => Future.value(true),
@@ -130,7 +129,7 @@ class NotificationWidgetState extends State<NotificationWidget>
                     widget.title!,
                     style: widget.titleStyle ?? TextStyles.titleStyle,
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Text(
                     widget.message!,
                     style: widget.messageStyle ?? TextStyles.bodyStyle,

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:ots/utils/styles.dart';
 
@@ -8,15 +10,15 @@ class NetworkWidget extends StatefulWidget {
   final bool persistNotification;
 
   const NetworkWidget({
-    Key? key,
+    super.key,
     this.disposeOverlay,
     this.state,
     this.messenger = const NetworkStateDefaultMessage(),
     this.persistNotification = false
-  }) : super(key: key);
+  });
 
   @override
-  _NetworkWidgetState createState() => _NetworkWidgetState();
+  State<NetworkWidget> createState() => _NetworkWidgetState();
 }
 
 class _NetworkWidgetState extends State<NetworkWidget> with SingleTickerProviderStateMixin {
@@ -26,7 +28,7 @@ class _NetworkWidgetState extends State<NetworkWidget> with SingleTickerProvider
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
     _animation = Tween(begin: -0.1, end: 0.0).animate(
       CurvedAnimation(
         curve: Curves.linear,
@@ -44,14 +46,14 @@ class _NetworkWidgetState extends State<NetworkWidget> with SingleTickerProvider
       debugPrint('Persisting NoInternet NetworkStatusWidget');
     } else {
       try {
-        await Future.delayed(Duration(milliseconds: 2000));
+        await Future.delayed(const Duration(milliseconds: 2000));
         if (mounted) {
           await _animationController.reverse();
           _callDispose();
         }
       } catch (err) {
         debugPrint('''NetworkStatusWidget dispose error''');
-        throw err;
+        rethrow;
       }
     }
   }
@@ -99,6 +101,7 @@ abstract class NetworkStateMessenger {
 class NetworkStateDefaultMessage extends NetworkStateMessenger {
   const NetworkStateDefaultMessage();
 
+  @override
   String message(NetworkState? networkState) {
     switch (networkState) {
       case NetworkState.Connected:
@@ -112,6 +115,7 @@ class NetworkStateDefaultMessage extends NetworkStateMessenger {
     }
   }
 
+  @override
   Color color(NetworkState? networkState) {
     switch (networkState) {
       case NetworkState.Connected:

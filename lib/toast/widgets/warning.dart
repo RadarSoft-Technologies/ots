@@ -12,16 +12,15 @@ class WarningToast extends StatefulWidget {
   final VoidCallback? onToasted;
 
   const WarningToast(
-      {Key? key,
+      {super.key,
       this.backgroundColor = ToastColors.warningToastBGColor,
       this.textStyle = ToastTextStyle.defaultTextStyle,
       this.message = " ",
       this.duration = ToastLength.short,
-      this.onToasted})
-      : super(key: key);
+      this.onToasted});
 
   @override
-  _WarningToastState createState() => _WarningToastState();
+  State<WarningToast> createState() => _WarningToastState();
 }
 
 class _WarningToastState extends State<WarningToast>
@@ -69,11 +68,11 @@ class _WarningToastState extends State<WarningToast>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.warning,
                 color: Colors.white,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               Flexible(
                 child: Text(
                   widget.message,

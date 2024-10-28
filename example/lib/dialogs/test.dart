@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'dialogs.dart';
 
-void main() => runApp(MaterialApp(home: DialogTest()));
+void main() => runApp(const MaterialApp(home: DialogTest()));
 
 class DialogTest extends StatefulWidget {
+  const DialogTest({super.key});
+
   @override
-  _DialogTestState createState() => _DialogTestState();
+  State<DialogTest> createState() => _DialogTestState();
 }
 
 class _DialogTestState extends State<DialogTest> {
-  Widget dialog = SizedBox();
+  Widget dialog = const SizedBox();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _DialogTestState extends State<DialogTest> {
             top: 50.0,
             left: 50.0,
             child: InkWell(
-              child: Text('show about dialog'),
+              child: const Text('show about dialog'),
               onTap: () {
                 showDialog();
               },
@@ -38,8 +40,8 @@ class _DialogTestState extends State<DialogTest> {
   showDialog() {
     setState(() {
       dialog = AnimatedAboutDialog(
-        title: Text('AlertDialog Title'),
-        content: SingleChildScrollView(
+        title: const Text('AlertDialog Title'),
+        content: const SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
               Text('This is a demo alert dialog.'),
@@ -49,7 +51,7 @@ class _DialogTestState extends State<DialogTest> {
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('Approve'),
+            child: const Text('Approve'),
             onPressed: () {
               Navigator.of(context).pop();
             },

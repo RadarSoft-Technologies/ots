@@ -12,16 +12,15 @@ class InfoToast extends StatefulWidget {
   final VoidCallback? onToasted;
 
   const InfoToast(
-      {Key? key,
+      {super.key,
       this.backgroundColor = ToastColors.infoToastBGColor,
       this.textStyle = ToastTextStyle.defaultTextStyle,
       this.message = " ",
       this.duration = ToastLength.short,
-      this.onToasted})
-      : super(key: key);
+      this.onToasted});
 
   @override
-  _InfoToastState createState() => _InfoToastState();
+  State<InfoToast> createState() => _InfoToastState();
 }
 
 class _InfoToastState extends State<InfoToast>
@@ -69,11 +68,11 @@ class _InfoToastState extends State<InfoToast>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.info,
                 color: Colors.white,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               Flexible(
                 child: Text(
                   widget.message,

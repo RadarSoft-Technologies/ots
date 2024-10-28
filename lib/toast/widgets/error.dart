@@ -12,16 +12,15 @@ class ErrorToast extends StatefulWidget {
   final VoidCallback? onToasted;
 
   const ErrorToast(
-      {Key? key,
+      {super.key,
       this.backgroundColor = ToastColors.errorToastBGColor,
       this.textStyle = ToastTextStyle.defaultTextStyle,
       this.message = " ",
       this.duration = ToastLength.short,
-      this.onToasted})
-      : super(key: key);
+      this.onToasted});
 
   @override
-  _ErrorToastState createState() => _ErrorToastState();
+  State<ErrorToast> createState() => _ErrorToastState();
 }
 
 class _ErrorToastState extends State<ErrorToast>
@@ -69,11 +68,11 @@ class _ErrorToastState extends State<ErrorToast>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.error,
                 color: Colors.white,
               ),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               Flexible(
                 child: Text(
                   widget.message,
